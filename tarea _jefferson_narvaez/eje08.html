@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrusel Automático - Jefferson Narváez</title>
+  <style>
+    body {
+      margin: 10;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://media.istockphoto.com/id/1321462048/es/foto/concepto-de-transformaci%C3%B3n-digital-ingenier%C3%ADa-de-sistemas-c%C3%B3digo-binario-programaci%C3%B3n.jpg?s=2048x2048&w=is&k=20&c=-qo2CLQg-LS1H_2-CuR_dRq5EkkvwrcHUbm2h1kQSI8=') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .carrusel {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .imagenes {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .imagenes img {
+      width: 600px;
+      height: 600px;
+      object-fit: cover;
+    }
+
+    .boton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 22px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    #prev { left: 15px; }
+    #next { right: 15px; }
+
+    footer {
+      margin-top: 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2> – Jefferson Narváez</h2>
+
+  <div class="carrusel">
+    <div class="imagenes" id="imagenes">
+      <img src="https://cdn.pixabay.com/photo/2022/10/12/18/12/city-7517202_1280.jpg" alt="img1">
+      <img src="https://media.istockphoto.com/id/1353929411/vector/cyberpunk-style-futuristic-city-street-3d-illustration.jpg?s=2048x2048&w=is&k=20&c=ASW0R5gb3pGRZzmEeZdCzdNt98s6s5eHFI5l97ZtSas=" alt="img2">
+      <img src="https://media.istockphoto.com/id/1447084051/es/foto/cloud-computing-overlay-y-woman-trading-en-bolsa-con-una-estrategia-financiera-v%C3%ADa-wifi.jpg?s=2048x2048&w=is&k=20&c=AlKN3w2drM7VMF_xMdkOicrdaZlTVV1rrFEVE3327oE=" alt="img3">
+      <img src="https://media.istockphoto.com/id/1979289147/es/foto/ciencia-del-an%C3%A1lisis-de-datos-y-big-data-con-tecnolog%C3%ADa-de-ia-el-analista-o-cient%C3%ADfico-utiliza.jpg?s=2048x2048&w=is&k=20&c=BiaRDYXssFd4WrWB1F8PqlJKVdVi77K9zpClepZKu_o=" alt="img4">
+      <img src="https://media.istockphoto.com/id/1452604857/es/foto/empresario-tocando-el-cerebro-trabajando-de-la-inteligencia-artificial-automatizaci%C3%B3n-an%C3%A1lisis.jpg?s=2048x2048&w=is&k=20&c=pG5VJzwscDjzlHdirNqN7uRkTk-6Zb_63IW876hBB5I="alt="img4">
+    </div>
+    <button class="boton" id="prev">⟨</button>
+    <button class="boton" id="next">⟩</button>
+  </div>
+
+  <footer>
+    📞 Jefferson Narváez – 0985985820 | ✉️ jeffoloquito@gmail.com
+  </footer>
+
+  <script>
+    const imagenes = document.getElementById('imagenes');
+    const total = imagenes.children.length;
+    let index = 0;
+
+    function actualizarCarrusel() {
+      imagenes.style.transform = `translateX(-${index * 600}px)`;
+    }
+
+    document.getElementById('next').addEventListener('click', () => {
+      index = (index + 1) % total;
+      actualizarCarrusel();
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+      index = (index - 1 + total) % total;
+      actualizarCarrusel();
+    });
+
+    // Cambio automático cada 5 segundos
+    setInterval(() => {
+      index = (index + 1) % total;
+      actualizarCarrusel();
+    }, 1000);
+  </script>
+
+</body>
+</html>

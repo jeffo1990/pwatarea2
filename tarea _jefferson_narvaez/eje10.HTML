@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego de Preguntas - Jefferson Narváez</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+
+    video#fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    #juego {
+      background-color: rgba(0, 0, 0, 0.6);
+      margin: 40px auto;
+      padding: 30px;
+      max-width: 800px;
+      border-radius: 40px;
+      box-shadow: 0 0 60px black;
+    }
+
+    button {
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .respuesta {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 15px;
+      background-color: #555;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .respuesta:hover {
+      background-color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<video autoplay muted loop id="fondo">
+  <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+</video>
+
+<div id="juego">
+  <h1>Juego de Preguntas</h1>
+  <div>
+    <label>Nombre del jugador: <input type="text" id="jugador" placeholder="Tu nombre"></label>
+    <select id="nivel">
+      <option value="facil">Fácil</option>
+      <option value="medio">Medio</option>
+      <option value="dificil">Difícil</option>
+    </select>
+    <button onclick="iniciarJuego()">Iniciar Juego</button>
+  </div>
+  <div id="pregunta-container" style="display:none;">
+    <h2 id="pregunta"></h2>
+    <div id="respuestas"></div>
+    <button onclick="siguientePregunta()">Siguiente</button>
+  </div>
+  <div id="resultado" style="display:none;"></div>
+  <div id="puntajeAnterior"></div>
+  <button onclick="reiniciarJuego()" style="display:none;" id="btnReiniciar">Reiniciar Juego</button>
+</div>
+
+<script>
+  const preguntas = {
+    facil: [
+      { pregunta: "¿Cuál es la capital de Ecuador?", opciones: ["Quito", "Guayaquil", "Cuenca"], correcta: "Quito" },
+      { pregunta: "¿Qué idioma se habla en Brasil?", opciones: ["Español", "Portugués", "Inglés"], correcta: "Portugués" },
+      { pregunta: "¿Cuánto es 5 + 3?", opciones: ["6", "8", "9"], correcta: "8" },
+      { pregunta: "¿Cuánto es 7 - 4?", opciones: ["2", "3", "4"], correcta: "3" },
+      { pregunta: "¿Adivina: Blanco por dentro, verde por fuera. Si quieres que te lo diga, espera?", opciones: ["El aguacate", "El coco", "La pera"], correcta: "El aguacate" }
+    ],
+    medio: [
+      { pregunta: "¿Qué país tiene más habitantes?", opciones: ["India", "China", "EE.UU."], correcta: "India" },
+      { pregunta: "¿Qué idioma se habla en Egipto?", opciones: ["Árabe", "Turco", "Persa"], correcta: "Árabe" },
+      { pregunta: "¿Quién conquistó América?", opciones: ["Cristóbal Colón", "Hernán Cortés", "Simón Bolívar"], correcta: "Cristóbal Colón" },
+      { pregunta: "¿Cuál es la universidad de Guayaquil que está en Durán?", opciones: ["Bolivariana del Ecuador", "ESPOL", "Central"], correcta: "Bolivariana del Ecuador" },
+      { pregunta: "¿Cuánto es 6 × 4?", opciones: ["24", "20", "18"], correcta: "24" },
+      { pregunta: "¿Adivina: Agua pasa por mi casa, cate de mi corazón?", opciones: ["Aguacate", "Zapote", "Sandía"], correcta: "Aguacate" }
+    ],
+    dificil: [
+      { pregunta: "¿Qué país no tiene ejército?", opciones: ["Costa Rica", "Panamá", "Uruguay"], correcta: "Costa Rica" },
+      { pregunta: "¿Cuánto es 25 ÷ 5?", opciones: ["4", "5", "6"], correcta: "5" },
+      { pregunta: "¿Cuál es el idioma oficial de Irán?", opciones: ["Árabe", "Persa", "Hebreo"], correcta: "Persa" },
+      { pregunta: "¿Adivina: Cuanto más le quitas, más grande es. ¿Qué es?", opciones: ["El agujero", "La sombra", "El silencio"], correcta: "El agujero" },
+      { pregunta: "¿Qué universidad está en Durán?", opciones: ["Bolivariana del Ecuador", "Laica", "Salesiana"], correcta: "Bolivariana del Ecuador" }
+    ]
+  };
+
+  let indice = 0;
+  let puntuacion = 0;
+  let nivelSeleccionado = 'facil';
+  let preguntasNivel = [];
+
+  function iniciarJuego() {
+    const nombre = document.getElementById('jugador').value;
+    if (!nombre.trim()) {
+      alert("Por favor, escribe tu nombre.");
+      return;
+    }
+
+    nivelSeleccionado = document.getElementById('nivel').value;
+    preguntasNivel = [...preguntas[nivelSeleccionado]];
+    preguntasNivel.sort(() => Math.random() - 0.5);
+    indice = 0;
+    puntuacion = 0;
+
+    document.getElementById('pregunta-container').style.display = 'block';
+    document.getElementById('resultado').style.display = 'none';
+    document.getElementById('btnReiniciar').style.display = 'none';
+    mostrarPregunta();
+
+    const anterior = localStorage.getItem('puntaje');
+    const anteriorNombre = localStorage.getItem('nombre');
+    if (anterior) {
+      document.getElementById('puntajeAnterior').innerText = `Puntaje anterior: ${anteriorNombre} - ${anterior} pts`;
+    }
+  }
+
+  function mostrarPregunta() {
+    const actual = preguntasNivel[indice];
+    document.getElementById('pregunta').innerText = actual.pregunta;
+    const respuestas = document.getElementById('respuestas');
+    respuestas.innerHTML = '';
+    actual.opciones.forEach(opcion => {
+      const btn = document.createElement('div');
+      btn.innerText = opcion;
+      btn.className = 'respuesta';
+      btn.onclick = () => {
+        if (opcion === actual.correcta) {
+          puntuacion++;
+        }
+        siguientePregunta();
+      };
+      respuestas.appendChild(btn);
+    });
+  }
+
+  function siguientePregunta() {
+    indice++;
+    if (indice < preguntasNivel.length) {
+      mostrarPregunta();
+    } else {
+      terminarJuego();
+    }
+  }
+
+  function terminarJuego() {
+    document.getElementById('pregunta-container').style.display = 'none';
+    const nombre = document.getElementById('jugador').value;
+    document.getElementById('resultado').innerHTML = `<h2>¡Juego terminado!</h2><p>${nombre}, tu puntuación es ${puntuacion}/${preguntasNivel.length}</p>`;
+    document.getElementById('resultado').style.display = 'block';
+    document.getElementById('btnReiniciar').style.display = 'inline-block';
+
+    localStorage.setItem('nombre', nombre);
+    localStorage.setItem('puntaje', puntuacion);
+  }
+
+  function reiniciarJuego() {
+    iniciarJuego();
+  }
+</script>
+
+</body>
+</html>

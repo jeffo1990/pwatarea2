@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portada - Programación Web Avanzada</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    h2 {
+      font-weight: 300;
+      margin-top: 10px;
+    }
+
+    .info {
+      margin: 20px 0;
+      font-size: 1.1em;
+    }
+
+    .info p {
+      margin: 10px 0;
+    }
+
+    .info i {
+      margin-right: 10px;
+      color: #FFD700;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin: 40px 0;
+      padding: 0 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      background-color: #4CAF50;
+      padding: 15px;
+      border-radius: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    a:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    .icono {
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 2em;
+      }
+      nav {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fas fa-laptop-code"></i> Tarea Práctica 2</h1>
+    <h2>Programación Web Avanzada</h2>
+  </header>
+
+  <div class="info">
+    <p><i class="fas fa-user"></i> Jefferson Narváez</p>
+    <p><i class="fas fa-envelope"></i> jeffoloquito@gmail.com</p>
+    <p><i class="fas fa-phone"></i> 0985985820</p>
+  </div>
+
+  <nav>
+    <a href="eje01.html"><i class="fas fa-mouse-pointer icono"></i> Ejercicio 1</a>
+    <a href="eje02.html"><i class="fas fa-calculator icono"></i> Ejercicio 2</a>
+    <a href="eje03.html"><i class="fas fa-image icono"></i> Ejercicio 3</a>
+    <a href="eje04.html"><i class="fas fa-clock icono"></i> Ejercicio 4</a>
+    <a href="eje05.html"><i class="fas fa-check-circle icono"></i> Ejercicio 5</a>
+    <a href="eje06.html"><i class="fas fa-tasks icono"></i> Ejercicio 6</a>
+    <a href="eje07.html"><i class="fas fa-bars icono"></i> Ejercicio 7</a>
+    <a href="eje08.html"><i class="fas fa-images icono"></i> Ejercicio 8</a>
+    <a href="eje09.html"><i class="fas fa-hourglass-start icono"></i> Ejercicio 9</a>
+    <a href="eje10.html"><i class="fas fa-question-circle icono"></i> Ejercicio 10</a>
+  </nav>
+
+  <footer>
+    <p>&copy; 2025 | Unidad 1 - Programación Web Avanzada</p>
+  </footer>
+
+</body>
+</html>

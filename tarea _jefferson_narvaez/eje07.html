@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menú de Jefferson Narváez</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: url('https://static.vecteezy.com/system/resources/previews/026/287/494/large_2x/illustration-digital-screen-video-player-3d-icon-symbols-isolated-on-background-free-vector.jpg');
+      background-size: cover;
+      background-position: donw;
+      color: white;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 12px 18px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+      border-radius: 5px;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      min-width: 160px;
+      z-index: 1;
+      border-radius: 5px;
+    }
+
+    .submenu li a {
+      padding: 10px 15px;
+    }
+
+    li:hover > .submenu {
+      display: block;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      text-align: center;
+      font-size: 16px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Jefferson Narváez</div>
+    <ul>
+      <li><a href="https://ads.google.com/intl/es-419/start/overview-adon/?subid=ec-es-adon-awa-sch-c-scru!o3~7ed2e0ecdeee1ce3e74188f4e3c96f89~p77760963524&&gclid=7ed2e0ecdeee1ce3e74188f4e3c96f89&gclsrc=3p.ds&msclkid=7ed2e0ecdeee1ce3e74188f4e3c96f89&utm_source=bing&utm_medium=cpc&utm_campaign=1709920%20%7C%20Google%20Ads%20%7C%20DR%20%7C%20ESS01%20%7C%20LATAM%20%7C%20EC%20%7C%20es%20%7C%20Desk%2BTab%20%7C%20SEM%20%7C%20SKWS%20-%20PHR%20%7C%20Txt%20%7C%20Bing_High&utm_term=sitio%20web&utm_content=Desk%2BTab%20%7C%20SKWS%20-%20PHR%20%7C%20Txt%20~%20High%20~%20Website">Inicio</a></li>
+      <li>
+        <a href="#">Servicios</a>
+        <ul class="submenu">
+          <li><a href="https://edit.org/es" target="_blank">Diseño</a></li>
+          <li><a href="" target="_blank">Desarrollo</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <footer>
+    📞 Teléfono: 0985985820 | ✉️ Correo: jeffoloquito@gmail.com
+  </footer>
+
+</body>
+</html>

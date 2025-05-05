@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reloj Analógico con Fondo</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://media.licdn.com/dms/image/v2/D4D12AQEtSpYQ7HkCKw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1708958996347?e=2147483647&v=beta&t=xIR-o26JTXBcLM4h2Fi0n3KOVnintQbN7J3kF2a2XOc') no-repeat center center fixed;
+      background-size: cover;
+      font-family: sans-serif;
+    }
+
+    .reloj {
+      width: 300px;
+      height: 300px;
+      border: 10px solid white;
+      border-radius: 50%;
+      position: relative;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .punto-centro {
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+
+    .manecilla {
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s ease-in-out;
+    }
+
+    .hora {
+      height: 6px;
+      background: #ffd700;
+      z-index: 3;
+    }
+
+    .minuto {
+      height: 4px;
+      background: #00ffff;
+      z-index: 2;
+    }
+
+    .segundo {
+      height: 2px;
+      background: red;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="reloj">
+    <div class="manecilla hora" id="hora"></div>
+    <div class="manecilla minuto" id="minuto"></div>
+    <div class="manecilla segundo" id="segundo"></div>
+    <div class="punto-centro"></div>
+  </div>
+
+  <script>
+    function actualizarReloj() {
+      const ahora = new Date();
+      const segundos = ahora.getSeconds();
+      const minutos = ahora.getMinutes();
+      const horas = ahora.getHours();
+
+      const rotacionSeg = segundos * 6;
+      const rotacionMin = minutos * 6 + segundos * 0.1;
+      const rotacionHora = (horas % 12) * 30 + minutos * 0.5;
+
+      document.getElementById('segundo').style.transform = `rotate(${rotacionSeg}deg)`;
+      document.getElementById('minuto').style.transform = `rotate(${rotacionMin}deg)`;
+      document.getElementById('hora').style.transform = `rotate(${rotacionHora}deg)`;
+    }
+
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+  </script>
+
+</body>
+</html>

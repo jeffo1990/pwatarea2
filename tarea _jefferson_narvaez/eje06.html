@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tareas</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('https://th.bing.com/th/id/R.c2935c76f66ebebd52a3387901ac851d?rik=gJEcs5bOQGEL7g&riu=http%3a%2f%2fedimae.com%2fwp-content%2fuploads%2f2016%2f12%2fRegistro-Alumnos-800px-alto-1.png&ehk=PDsppV3ZKPgAofzFY0ZDv8HEWtZ2Wnlbp0erbQTaHt4%3d&risl=&pid=ImgRaw&r=0') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .contenedor {
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 75%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    ul {
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    li span {
+      flex-grow: 1;
+    }
+
+    li button {
+      background-color: #dc3545;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <h2>Lista de Tareas</h2>
+    <input type="text" id="tarea" placeholder="Escribe una tarea...">
+    <button onclick="agregarTarea()">Agregar</button>
+    <ul id="listaTareas"></ul>
+  </div>
+
+  <script>
+    function agregarTarea() {
+      const input = document.getElementById("tarea");
+      const texto = input.value.trim();
+
+      if (texto === "") return;
+
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+      span.textContent = texto;
+
+      const btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "Eliminar";
+      btnEliminar.onclick = () => li.remove();
+
+      li.appendChild(span);
+      li.appendChild(btnEliminar);
+
+      document.getElementById("listaTareas").appendChild(li);
+      input.value = "";
+    }
+  </script>
+
+</body>
+</html>

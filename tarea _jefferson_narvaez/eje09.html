@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Temporizador de Cuenta Regresiva</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://th.bing.com/th/id/OIP._5XSfrvJua8txPwJCRK47wHaEK?cb=iwc1&rs=1&pid=ImgDetMain') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #1e4dce;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .contenedor {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px 60px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #temporizador {
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <h1>Cuenta Regresiva</h1>
+    <div id="temporizador">05:00</div>
+  </div>
+
+  <script>
+    let tiempoRestante = 5 * 60; // 5 minutos en segundos
+
+    function actualizarTemporizador() {
+      const minutos = Math.floor(tiempoRestante / 60);
+      const segundos = tiempoRestante % 60;
+
+      document.getElementById("temporizador").innerHTML =
+        `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+
+      if (tiempoRestante > 0) {
+        tiempoRestante--;
+      } else {
+        clearInterval(intervalo);
+        document.getElementById("temporizador").innerHTML = "¡Tiempo terminado!";
+      }
+    }
+
+    const intervalo = setInterval(actualizarTemporizador, 900);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Simple</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://www.musicmundial.com/en/wp-content/uploads/2023/06/Bowser-character-voice-actor-reveals-how-many-Super-Mario-Bros.-movies-will-be-made-750x536.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    .calculadora {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 20px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .botones button {
+      width: 60px;
+      height: 60px;
+      margin: 5px;
+      font-size: 20px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    .botones button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculadora">
+    <input type="text" id="pantalla" readonly>
+    <div class="botones">
+      <button onclick="agregar('7')">7</button>
+      <button onclick="agregar('8')">8</button>
+      <button onclick="agregar('9')">9</button>
+      <button onclick="agregar('/')">/</button><br>
+      <button onclick="agregar('4')">4</button>
+      <button onclick="agregar('5')">5</button>
+      <button onclick="agregar('6')">6</button>
+      <button onclick="agregar('*')">*</button><br>
+      <button onclick="agregar('1')">1</button>
+      <button onclick="agregar('2')">2</button>
+      <button onclick="agregar('3')">3</button>
+      <button onclick="agregar('-')">-</button><br>
+      <button onclick="agregar('0')">0</button>
+      <button onclick="agregar('.')">.</button>
+      <button onclick="calcular()">=</button>
+      <button onclick="agregar('+')">+</button><br>
+      <button onclick="limpiar()" style="width: 100%">C</button>
+    </div>
+  </div>
+
+  <script>
+    const pantalla = document.getElementById('pantalla');
+
+    function agregar(valor) {
+      pantalla.value += valor;
+    }
+
+    function calcular() {
+      try {
+        pantalla.value = eval(pantalla.value);
+      } catch (e) {
+        pantalla.value = 'Error';
+      }
+    }
+
+    function limpiar() {
+      pantalla.value = '';
+    }
+  </script>
+
+</body>
+</html>
